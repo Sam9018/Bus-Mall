@@ -177,3 +177,31 @@ function createChart() {
 
 }
 
+
+
+
+// NEED TO GO BACK OVER THIS NOT STORING WHAT I WANT IN LS
+
+function initializeLS() {
+
+  var ImageAnalytics = {};
+
+  var lsImageAnalytics = localStorage.getItem('ImageAnalytics');
+  if (lsImageAnalytics) {
+    lsImageAnalytics + JSON.stringify(ImageAnalytics);
+  }
+  else {
+    var storableImage = JSON.stringify(ImageAnalytics.imageDatabase);
+    localStorage.setItem('ImageAnalytics', storableImage);
+  }
+  return ImageAnalytics;
+}
+
+var ImageAnalyticsLS = initializeLS();
+ImageAnalyticsLS.move();
+
+window.localStorage.setItem('name', 'clicks');
+window.localStorage.setItem('name', 'displayed');
+
+
+// NEED TO GO BACK OVER THIS NOT STORING WHAT I WANT IN LS
