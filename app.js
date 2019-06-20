@@ -11,6 +11,7 @@ function ImageAnalytics(name, filepath) {
   this.clicked = 0;
   ImageAnalytics.imageDatabase.push(this);
 }
+
 ImageAnalytics.imageDatabase = [];
 
 new ImageAnalytics('R2D2 Bag', 'images/bag.jpg');
@@ -135,13 +136,14 @@ function createChart() {
   for (var i = 0; i < ImageAnalytics.imageDatabase.length; i++) {
     labels.push(ImageAnalytics.imageDatabase[i].name);
     displayedTimes.push(ImageAnalytics.imageDatabase[i].displayed);
-    clickedTimes.push(ImageAnalytics.imageDatabase[i].clicked)
+    clickedTimes.push(ImageAnalytics.imageDatabase[i].clicked);
     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     colors.push(randomColor);
   }
 
 
-  var myChart = new Chart(ctx, {
+  // eslint-disable-next-line no-undef
+  new Chart(ctx, {
     type: 'bar',
     data: {
       labels: labels,
