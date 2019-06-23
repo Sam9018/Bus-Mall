@@ -57,6 +57,7 @@ function handleClick(event) {
       // console.log(event.target.alt, 'event.target.alt');
       ImageAnalytics.imageDatabase[i].clicked++;
       clicksThisSession++;
+      saveLS();
       // console.log(clicksThisSession);
       if (clicksThisSession === maxClicksAllowed) {
         // console.log('insideInnerIf');
@@ -116,8 +117,6 @@ function getRandomImages() {
 
 }
 
-setupListeners();
-getRandomImages();
 
 
 
@@ -179,29 +178,12 @@ function createChart() {
 
 
 
-
-// NEED TO GO BACK OVER THIS NOT STORING WHAT I WANT IN LS
-
-function initializeLS() {
-
-  var ImageAnalytics = {};
-
-  var lsImageAnalytics = localStorage.getItem('ImageAnalytics');
-  if (lsImageAnalytics) {
-    lsImageAnalytics + JSON.stringify(ImageAnalytics);
-  }
-  else {
-    var storableImage = JSON.stringify(ImageAnalytics.imageDatabase);
-    localStorage.setItem('ImageAnalytics', storableImage);
-  }
-  return ImageAnalytics;
+function saveLS() {
+  var contents = ImageAnalytics.imageDatabase;
+  localStorage.setItem('data', JSON.stringify(contents));
+  localStorage.setItem('clicks', JSON.stringify(clicksThisSession));
 }
 
-var ImageAnalyticsLS = initializeLS();
-ImageAnalyticsLS.move();
+setupListeners();
+getRandomImages();
 
-window.localStorage.setItem('name', 'clicks');
-window.localStorage.setItem('name', 'displayed');
-
-
-// NEED TO GO BACK OVER THIS NOT STORING WHAT I WANT IN LS
